@@ -10,11 +10,13 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// import Joomla controller library
+// Import Joomla controller library
 jimport('joomla.application.component.controller');
 
 /**
  * School Component Controller
+ *
+ * @since  1.5
  */
 class SchoolController extends JControllerLegacy
 {
@@ -30,7 +32,19 @@ class SchoolController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		$view = JFactory::getApplication()->input->getCmd('view', 'students');
+		$view = JFactory::getApplication()->input->getCmd('view', 'students', 'teachers');
+
+		if ( $view == 'teachers' )
+		{
+			$user = JFactory::getUser();
+			$app  = JFactory::getApplication();
+
+			if ($user->id == 0)
+			{
+				$app->redirect(JRoute::_('index.php?option=com_users&view=login'));
+			}
+		}
+
 		JFactory::getApplication()->input->set('view', $view);
 
 		parent::display($cachable, $urlparams);

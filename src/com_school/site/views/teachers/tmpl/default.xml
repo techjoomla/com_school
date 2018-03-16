@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_SCHOOL_TEACHERS_VIEW_MENU_TITLE" option="COM_SCHOOL_TEACHERS_VIEW_MENU_OPTION">
+		<message>
+			<![CDATA[COM_SCHOOL_TEACHERS_VIEW_MENU_DESC]]>
+		</message>
+	</layout>
+</metadata>

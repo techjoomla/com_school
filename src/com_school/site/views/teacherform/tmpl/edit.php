@@ -10,8 +10,6 @@
 // No direct access
 defined('_JEXEC') or die();
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
@@ -20,15 +18,15 @@ JHtml::_('behavior.keepalive');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'student.cancel')
+		if (task == 'teacherform.cancel')
 		{
-			Joomla.submitform(task, document.getElementById('student-form'));
+			Joomla.submitform(task, document.getElementById('teacher-form'));
 		}
 		else
 		{
-			if (task != 'student.cancel' && document.formvalidator.isValid(document.id('student-form')))
+			if (task != 'teacherform.cancel' && document.formvalidator.isValid(document.id('teacher-form')))
 			{
-				Joomla.submitform(task, document.getElementById('student-form'));
+				Joomla.submitform(task, document.getElementById('teacher-form'));
 			}
 			else
 			{
@@ -39,9 +37,7 @@ JHtml::_('behavior.keepalive');
 </script>
 
 <div class="">
-	<form
-		action="<?php echo JRoute::_('index.php?option=com_school&view=student&layout=edit&id=' . (int) $this->item->id, false);?>"
-		method="post" enctype="multipart/form-data" name="adminForm" id="student-form" class="form-validate">
+	<form action="" method="post" enctype="multipart/form-data" name="teacher-form" id="teacher-form" class="form-validate">
 
 		<div class="form-horizontal">
 			<div class="row-fluid">
@@ -54,15 +50,6 @@ JHtml::_('behavior.keepalive');
 							</div>
 							<div class="controls">
 								<?php echo $this->form->getInput('id'); ?>
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="control-label">
-								<?php echo $this->form->getLabel('user_id'); ?>
-							</div>
-							<div class="controls">
-								<?php echo $this->form->getInput('user_id'); ?>
 							</div>
 						</div>
 
@@ -119,19 +106,26 @@ JHtml::_('behavior.keepalive');
 								<?php echo $this->form->getInput('address'); ?>
 							</div>
 						</div>
-
-						<div class="control-group">
-							<div class="control-label">
-								<?php echo $this->form->getLabel('gender'); ?>
-							</div>
-							<div class="controls">
-								<?php echo $this->form->getInput('gender'); ?>
-							</div>
-						</div>
 					</fieldset>
 				</div>
 			</div>
+			<div class="control-group">
+				<div class="controls">
+					<a type="button" class="btn btn-primary validate" onclick="Joomla.submitbutton('teacherform.save');">
+					<?php echo JText::_('JSUBMIT'); ?>
+				</a>
+					<a class="btn"
+						href="<?php echo JRoute::_('index.php?option=com_school&view=teachers'); ?>"
+						title="<?php echo JText::_('JCANCEL'); ?>">
+					<?php echo JText::_('JCANCEL'); ?>
+				</a> <input type="hidden" name="option" value="com_school" />
+				<input
+						type="hidden" name="controller" value="teacherform" />
+									<input type="hidden" name="view" value="teacherform" />
 
+				</div>
+			</div>
+			<input type="hidden" name="jform[user_id]" value="<?php echo JFactory::getUser()->id; ?>"/>
 			<input type="hidden" name="task" value="" />
 			<?php echo JHtml::_('form.token'); ?>
 		</div>

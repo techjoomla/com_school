@@ -26,14 +26,14 @@ $saveOrder = $listOrder == 'a.ordering';
 
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_school&task=students.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'studentsList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+	$saveOrderingUrl = 'index.php?option=com_school&task=teachers.saveOrderAjax&tmpl=component';
+	JHtml::_('sortablelist.sortable', 'teachersList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 ?>
 
 <div class="tj-page">
 	<div class="row-fluid">
-		<form action="<?php echo JRoute::_('index.php?option=com_school&view=students'); ?>" method="post" name="adminForm" id="adminForm">
+		<form action="<?php echo JRoute::_('index.php?option=com_school&view=teachers'); ?>" method="post" name="adminForm" id="adminForm">
 			<?php if (!empty( $this->sidebar)) : ?>
 				<div id="j-sidebar-container" class="span2">
 					<?php echo $this->sidebar; ?>
@@ -48,7 +48,7 @@ if ($saveOrder)
 					echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
 					?>
 
-					<table class="table table-striped" id="studentsList">
+					<table class="table table-striped" id="teachersList">
 						<thead>
 							<tr>
 								<th width="1%" class="nowrap center hidden-phone">
@@ -81,9 +81,6 @@ if ($saveOrder)
 								</th>
 								<th>
 									<?php echo JHtml::_('searchtools.sort',  'COM_SCHOOL_STUDENTS_ID', 'a.id', $listDirn, $listOrder); ?>
-								</th>
-								<th>
-									<?php echo JText::_('COM_SCHOOL_STUDENTS_GENDER'); ?>
 								</th>
 							</tr>
 						</thead>
@@ -131,18 +128,18 @@ if ($saveOrder)
 
 									<?php if (isset($this->items[0]->state)): ?>
 										<td class="center">
-											<?php echo JHtml::_('jgrid.published', $item->state, $i, 'students.', $canChange, 'cb'); ?>
+											<?php echo JHtml::_('jgrid.published', $item->state, $i, 'teachers.', $canChange, 'cb'); ?>
 										</td>
 									<?php endif; ?>
 
 									<td class="has-context">
 										<div class="pull-left break-word">
 											<?php if ($item->checked_out) : ?>
-												<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'students.', $canCheckin); ?>
+												<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'teachers.', $canCheckin); ?>
 											<?php endif; ?>
 
 											<?php if ($canEdit || $canEditOwn) : ?>
-												<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_school&task=student.edit&id=' . $item->id); ?>" title="<?php echo JText::_('JACTION_EDIT'); ?>">
+												<a class="hasTooltip" href="<?php echo JRoute::_('index.php?option=com_school&task=teacher.edit&id=' . $item->id); ?>" title="<?php echo JText::_('JACTION_EDIT'); ?>">
 													<?php echo $this->escape($item->fname . ' ' . $item->lname); ?></a>
 											<?php else : ?>
 												<span><?php echo $this->escape($item->fname . ' ' . $item->lname); ?></span>
@@ -154,7 +151,6 @@ if ($saveOrder)
 									<td><?php echo $item->mobile; ?></td>
 									<td><?php echo $item->address; ?></td>
 									<td><?php echo $item->id; ?></td>
-									<td><?php echo $item->gender; ?></td>
 								</tr>
 
 								<?php

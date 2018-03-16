@@ -20,15 +20,15 @@ JHtml::_('behavior.keepalive');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'student.cancel')
+		if (task == 'teacher.cancel')
 		{
-			Joomla.submitform(task, document.getElementById('student-form'));
+			Joomla.submitform(task, document.getElementById('teacher-form'));
 		}
 		else
 		{
-			if (task != 'student.cancel' && document.formvalidator.isValid(document.id('student-form')))
+			if (task != 'teacher.cancel' && document.formvalidator.isValid(document.id('teacher-form')))
 			{
-				Joomla.submitform(task, document.getElementById('student-form'));
+				Joomla.submitform(task, document.getElementById('teacher-form'));
 			}
 			else
 			{
@@ -40,8 +40,8 @@ JHtml::_('behavior.keepalive');
 
 <div class="">
 	<form
-		action="<?php echo JRoute::_('index.php?option=com_school&view=student&layout=edit&id=' . (int) $this->item->id, false);?>"
-		method="post" enctype="multipart/form-data" name="adminForm" id="student-form" class="form-validate">
+		action="<?php echo JRoute::_('index.php?option=com_school&view=teacher&layout=edit&id=' . (int) $this->item->id, false);?>"
+		method="post" enctype="multipart/form-data" name="adminForm" id="teacher-form" class="form-validate">
 
 		<div class="form-horizontal">
 			<div class="row-fluid">
@@ -117,15 +117,6 @@ JHtml::_('behavior.keepalive');
 							</div>
 							<div class="controls">
 								<?php echo $this->form->getInput('address'); ?>
-							</div>
-						</div>
-
-						<div class="control-group">
-							<div class="control-label">
-								<?php echo $this->form->getLabel('gender'); ?>
-							</div>
-							<div class="controls">
-								<?php echo $this->form->getInput('gender'); ?>
 							</div>
 						</div>
 					</fieldset>

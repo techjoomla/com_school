@@ -16,10 +16,5 @@
 		<field name="mobile" type="number" label="COM_SCHOOL_FORM_LBL_STUDENT_MOBILE" description="COM_SCHOOL_FORM_DESC_STUDENT_MOBILE" required="true" filter="safehtml" />
 
 		<field name="address" type="textarea" label="COM_SCHOOL_FORM_LBL_STUDENT_ADDRESS" description="COM_SCHOOL_FORM_DESC_STUDENT_ADDRESS" required="true" filter="safehtml" />
-
-		<field name="gender" type="radio" label="COM_SCHOOL_FORM_LBL_STUDENT_GENDER" description="COM_SCHOOL_FORM_DESC_STUDENT_GENDER" required="true" filter="safehtml">
-			<option value="0">Male</option>
-			<option value="1">Female</option>
-		</field>
 	</fieldset>
 </form>

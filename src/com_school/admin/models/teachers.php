@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  1.6
  */
-class SchoolModelStudents extends JModelList
+class SchoolModelTeachers extends JModelList
 {
 	/**
 	 * Constructor.
@@ -73,7 +73,7 @@ class SchoolModelStudents extends JModelList
 		$this->setState('list.ordering', $orderCol);
 
 		// Set ordering direction.
-		echo $listOrder = $app->getUserStateFromRequest($this->context . 'filter_order_Dir', 'filter_order_Dir');
+		$listOrder = $app->getUserStateFromRequest($this->context . 'filter_order_Dir', 'filter_order_Dir');
 
 		if (!in_array(strtoupper($listOrder), array('ASC', 'DESC', '')))
 		{
@@ -117,7 +117,7 @@ class SchoolModelStudents extends JModelList
 				)
 			);
 
-		$query->from('`#__school_students` AS a');
+		$query->from('`#__school_teachers` AS a');
 
 		// Join over the users for the checked out user.
 		$query->select('u.email AS email');
@@ -196,11 +196,6 @@ class SchoolModelStudents extends JModelList
 	public function getItems()
 	{
 		$items = parent::getItems();
-
-		foreach ($items as &$item)
-		{
-			$item->gender = ($item->gender == 1) ? $item->gender = 'Female' : $item->gender = 'Male' ;
-		}
 
 		return $items;
 	}
